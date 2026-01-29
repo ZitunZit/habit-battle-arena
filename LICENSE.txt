@@ -1,0 +1,159 @@
+HABIT BATTLE ARENA - LICENCE D'UTILISATION
+==========================================
+
+Copyright © 2024 Hamza. Tous droits réservés.
+
+AUTORISATIONS
+-------------
+
+Ce logiciel est fourni à titre personnel et éducatif. Vous êtes autorisé à :
+
+1. Utiliser l'application à des fins personnelles
+2. Tester et évaluer l'application
+3. Partager le lien URL de l'application hébergée officiellement
+4. Soumettre des suggestions d'amélioration
+
+RESTRICTIONS
+------------
+
+Sans autorisation écrite préalable de l'auteur, vous N'ÊTES PAS autorisé à :
+
+1. Copier, modifier ou distribuer le code source
+2. Utiliser le code ou l'application à des fins commerciales
+3. Créer des œuvres dérivées basées sur cette application
+4. Retirer ou modifier les mentions de copyright
+5. Héberger l'application sur vos propres serveurs ou domaines
+6. Revendre ou monétiser l'application sous quelque forme que ce soit
+7. Extraire des parties du code pour d'autres projets commerciaux
+
+PROPRIÉTÉ INTELLECTUELLE
+-------------------------
+
+Tous les droits, titres et intérêts relatifs à ce logiciel, y compris mais sans s'y limiter :
+- Le code source
+- Le design visuel et l'interface utilisateur
+- Les concepts et mécaniques de jeu
+- Les algorithmes et la logique métier
+- Les graphismes, animations et effets visuels
+- Le nom "Habit Battle Arena" et tous les éléments de marque
+
+restent la propriété exclusive de l'auteur.
+
+LICENCE COMMERCIALE
+-------------------
+
+Pour toute utilisation commerciale, y compris mais sans s'y limiter :
+- Intégration dans un produit commercial
+- Utilisation dans un contexte professionnel ou d'entreprise
+- Monétisation de l'application ou de ses dérivés
+- Hébergement sur des plateformes commerciales
+
+Veuillez contacter l'auteur pour obtenir une licence commerciale appropriée.
+
+Contact : boudourhamza7@gmail.com
+
+GARANTIE ET RESPONSABILITÉ
+---------------------------
+
+CE LOGICIEL EST FOURNI "TEL QUEL", SANS GARANTIE D'AUCUNE SORTE, EXPRESSE OU IMPLICITE.
+L'AUTEUR NE PEUT ÊTRE TENU RESPONSABLE DE TOUT DOMMAGE DÉCOULANT DE L'UTILISATION OU DE 
+L'IMPOSSIBILITÉ D'UTILISER CE LOGICIEL.
+
+JURIDICTION
+-----------
+
+Cette licence est régie par les lois françaises. Tout litige relatif à cette licence sera 
+soumis à la juridiction exclusive des tribunaux français.
+
+MODIFICATIONS DE LA LICENCE
+----------------------------
+
+L'auteur se réserve le droit de modifier ces conditions à tout moment. Les utilisateurs 
+seront informés de tout changement significatif.
+
+Date d'effet : 29 janvier 2024
+Dernière mise à jour : 29 janvier 2024
+
+Pour toute question concernant cette licence, veuillez contacter :
+[Ton email ou contact à ajouter]
+
+---
+
+HABIT BATTLE ARENA LICENSE (ENGLISH VERSION)
+=============================================
+
+Copyright © 2024 Hamza. All rights reserved.
+
+PERMISSIONS
+-----------
+
+This software is provided for personal and educational purposes. You are permitted to:
+
+1. Use the application for personal purposes
+2. Test and evaluate the application
+3. Share the URL link of the officially hosted application
+4. Submit improvement suggestions
+
+RESTRICTIONS
+------------
+
+Without prior written permission from the author, you are NOT permitted to:
+
+1. Copy, modify, or distribute the source code
+2. Use the code or application for commercial purposes
+3. Create derivative works based on this application
+4. Remove or modify copyright notices
+5. Host the application on your own servers or domains
+6. Resell or monetize the application in any form
+7. Extract portions of the code for other commercial projects
+
+INTELLECTUAL PROPERTY
+----------------------
+
+All rights, titles, and interests in this software, including but not limited to:
+- Source code
+- Visual design and user interface
+- Game concepts and mechanics
+- Algorithms and business logic
+- Graphics, animations, and visual effects
+- The name "Habit Battle Arena" and all branding elements
+
+remain the exclusive property of the author.
+
+COMMERCIAL LICENSE
+------------------
+
+For any commercial use, including but not limited to:
+- Integration into a commercial product
+- Use in a professional or business context
+- Monetization of the application or its derivatives
+- Hosting on commercial platforms
+
+Please contact the author to obtain an appropriate commercial license.
+
+Contact: boudourhamza7@gmail.com
+
+WARRANTY AND LIABILITY
+----------------------
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+THE AUTHOR SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM THE USE OR INABILITY TO
+USE THIS SOFTWARE.
+
+JURISDICTION
+------------
+
+This license is governed by French law. Any dispute related to this license will be
+subject to the exclusive jurisdiction of French courts.
+
+LICENSE MODIFICATIONS
+---------------------
+
+The author reserves the right to modify these terms at any time. Users will be
+notified of any significant changes.
+
+Effective date: January 29, 2024
+Last updated: January 29, 2024
+
+For any questions regarding this license, please contact:
+boudourhamza7@gmail.com

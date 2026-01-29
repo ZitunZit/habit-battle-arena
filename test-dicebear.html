@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test DiceBear</title>
+    <style>
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            border: 2px solid white;
+            margin: 10px;
+        }
+        .error {
+            color: red;
+            padding: 10px;
+            background: rgba(255,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Test DiceBear Avatars</h1>
+    
+    <div>
+        <h2>Héros</h2>
+        <img id="heroAvatar" alt="Hero">
+        <p id="heroStatus">Loading...</p>
+    </div>
+    
+    <div>
+        <h2>Démon</h2>
+        <img id="villainAvatar" alt="Villain">
+        <p id="villainStatus">Loading...</p>
+    </div>
+    
+    <div id="errors"></div>
+    
+    <script>
+        // Test DiceBear
+        function generateAvatarUrl(type) {
+            const userId = 'test-user-123';
+            const dailySeed = new Date().toDateString();
+            const seed = `${dailySeed}-${type}-${userId}`;
+            const bgColor = type === 'hero' ? 'ff8c00' : 'dc143c';
+            const url = `https://api.dicebear.com/7.x/adventurer/svg?seed=${seed}&backgroundColor=${bgColor}&size=180`;
+            
+            console.log('Generated URL for', type, ':', url);
+            return url;
+        }
+        
+        // Load avatars
+        const heroAvatar = document.getElementById('heroAvatar');
+        const villainAvatar = document.getElementById('villainAvatar');
+        const heroStatus = document.getElementById('heroStatus');
+        const villainStatus = document.getElementById('villainStatus');
+        const errorsDiv = document.getElementById('errors');
+        
+        // Hero
+        heroAvatar.src = generateAvatarUrl('hero');
+        heroAvatar.onload = () => {
+            heroStatus.textContent = '✅ Loaded!';
+            heroStatus.style.color = 'lime';
+        };
+        heroAvatar.onerror = (e) => {
+            heroStatus.textContent = '❌ Error loading';
+            heroStatus.style.color = 'red';
+            errorsDiv.innerHTML += '<div class="error">Hero avatar failed: ' + e + '</div>';
+        };
+        
+        // Villain
+        villainAvatar.src = generateAvatarUrl('villain');
+        villainAvatar.onload = () => {
+            villainStatus.textContent = '✅ Loaded!';
+            villainStatus.style.color = 'lime';
+        };
+        villainAvatar.onerror = (e) => {
+            villainStatus.textContent = '❌ Error loading';
+            villainStatus.style.color = 'red';
+            errorsDiv.innerHTML += '<div class="error">Villain avatar failed: ' + e + '</div>';
+        };
+    </script>
+</body>
+</html>

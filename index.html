@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Habit Battle Arena - Transforme tes habitudes en combat épique">
+    <meta name="author" content="Hamza">
+    <meta name="copyright" content="© 2024 Habit Battle Arena - Tous droits réservés">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-512.png">
+    
+    <title>Habit Battle Arena</title>
+    
+    <!-- Google Fonts - DBZ style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Saira+Condensed:wght@600;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-logo">
+            <div class="loading-aura"></div>
+            <h1 class="loading-title">HABIT BATTLE<br>ARENA</h1>
+        </div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Language Selector -->
+    <div id="languageSelector" class="language-selector hidden">
+        <div class="language-panel">
+            <h2 class="language-title" data-en="Choose Your Language" data-fr="Choisis ta Langue">Choisis ta Langue</h2>
+            <div class="language-buttons">
+                <button class="language-btn" data-lang="fr">
+                    <span class="flag">🇫🇷</span>
+                    <span>Français</span>
+                </button>
+                <button class="language-btn" data-lang="en">
+                    <span class="flag">🇬🇧</span>
+                    <span>English</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Mode -->
+    <div id="demoMode" class="demo-mode hidden">
+        <div class="demo-container">
+            <h2 class="demo-title" data-fr="DÉCOUVERTE" data-en="DISCOVERY">DÉCOUVERTE</h2>
+            <p class="demo-subtitle" data-fr="Regarde comment fonctionne le combat quotidien" data-en="Watch how the daily battle works">
+                Regarde comment fonctionne le combat quotidien
+            </p>
+            
+            <div class="demo-arena">
+                <div class="demo-side demo-hero">
+                    <div class="demo-character hero-char">
+                        <div class="character-body"></div>
+                        <div class="character-head"></div>
+                        <div class="character-aura hero-aura"></div>
+                    </div>
+                    <h3 data-fr="TON HÉROS" data-en="YOUR HERO">TON HÉROS</h3>
+                </div>
+                
+                <div class="demo-vs">VS</div>
+                
+                <div class="demo-side demo-villain">
+                    <div class="demo-character villain-char">
+                        <div class="character-body"></div>
+                        <div class="character-head"></div>
+                        <div class="character-aura villain-aura"></div>
+                    </div>
+                    <h3 data-fr="TON DÉMON" data-en="YOUR DEMON">TON DÉMON</h3>
+                </div>
+            </div>
+            
+            <div class="demo-explanation">
+                <div class="demo-step">
+                    <span class="step-number">1</span>
+                    <p data-fr="Configure tes habitudes. Chaque côté (bonnes ET mauvaises) doit totaliser exactement 20 points." 
+                       data-en="Configure your habits. Each side (good AND bad) must total exactly 20 points.">
+                        Configure tes habitudes. Chaque côté (bonnes ET mauvaises) doit totaliser exactement 20 points.
+                    </p>
+                </div>
+                <div class="demo-step">
+                    <span class="step-number">2</span>
+                    <p data-fr="Valide ce que tu fais dans la journée" 
+                       data-en="Check what you do during the day">
+                        Valide ce que tu fais dans la journée
+                    </p>
+                </div>
+                <div class="demo-step">
+                    <span class="step-number">3</span>
+                    <p data-fr="À minuit, combat automatique !" 
+                       data-en="At midnight, automatic battle!">
+                        À minuit, combat automatique !
+                    </p>
+                </div>
+                <div class="demo-step">
+                    <span class="step-number">4</span>
+                    <p data-fr="Si tu gagnes, ton héros rejoint ton armée !" 
+                       data-en="If you win, your hero joins your army!">
+                        Si tu gagnes, ton héros rejoint ton armée !
+                    </p>
+                </div>
+            </div>
+            
+            <button class="demo-start-btn" data-fr="COMMENCER LE COMBAT" data-en="START BATTLE">
+                COMMENCER LE COMBAT
+            </button>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="main-app hidden">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-logo">
+                <span class="logo-icon">⚔️</span>
+                <span class="logo-text">HABIT BATTLE</span>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" id="settingsBtn">⚙️</button>
+            </div>
+        </header>
+
+        <!-- Main Arena -->
+        <main class="arena">
+            <!-- Hero Side (Right - Orange) -->
+            <section class="arena-side hero-side">
+                <div class="side-header">
+                    <h2 class="side-title" data-fr="HÉROS" data-en="HERO">HÉROS</h2>
+                    <div class="budget-display hero-budget">
+                        <span class="budget-label" data-fr="Budget:" data-en="Budget:">Budget:</span>
+                        <span class="budget-value"><span id="heroBudgetUsed">0</span>/20</span>
+                    </div>
+                </div>
+                
+                <div class="character-display">
+                    <div id="heroCharacter" class="character hero-character">
+                        <!-- Aura (layer 1) -->
+                        <img src="assets/auras/hero.png" class="character-aura-img" id="heroAuraImg" alt="">
+                        
+                        <!-- Avatar DiceBear (layer 2) -->
+                        <img src="" class="character-avatar" id="heroAvatar" alt="Hero">
+                        
+                        <!-- Muscle overlay (layer 3 - CSS effect) -->
+                        <div class="character-muscle-overlay"></div>
+                        
+                        <!-- Weapon (layer 4) -->
+                        <img src="" class="character-weapon-img" id="heroWeaponImg" alt="" style="display: none;">
+                        
+                        <!-- Power (layer 5) -->
+                        <img src="" class="character-power-img" id="heroPowerImg" alt="" style="display: none;">
+                    </div>
+                    <div class="character-stats">
+                        <div class="stat-bar">
+                            <span data-fr="Force:" data-en="Power:">Force:</span>
+                            <div class="stat-fill hero-stat-fill" id="heroStatBar"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="habits-container" id="heroHabits">
+                    <!-- Habits will be added dynamically -->
+                </div>
+                
+                <button class="add-habit-btn hero-add-btn" id="addHeroHabit">
+                    <span>+</span>
+                    <span data-fr="Ajouter habitude" data-en="Add habit">Ajouter habitude</span>
+                </button>
+            </section>
+
+            <!-- Center Divider -->
+            <div class="arena-divider">
+                <div class="divider-line"></div>
+                <div class="divider-vs">VS</div>
+                <div class="countdown-display" id="countdownDisplay">
+                    <div class="countdown-label" data-fr="Combat dans:" data-en="Battle in:">Combat dans:</div>
+                    <div class="countdown-time" id="countdownTime">--:--:--</div>
+                </div>
+            </div>
+
+            <!-- Villain Side (Left - Red) -->
+            <section class="arena-side villain-side">
+                <div class="side-header">
+                    <h2 class="side-title" data-fr="DÉMON" data-en="DEMON">DÉMON</h2>
+                    <div class="budget-display villain-budget">
+                        <span class="budget-label" data-fr="Budget:" data-en="Budget:">Budget:</span>
+                        <span class="budget-value"><span id="villainBudgetUsed">0</span>/20</span>
+                    </div>
+                </div>
+                
+                <div class="character-display">
+                    <div id="villainCharacter" class="character villain-character">
+                        <!-- Aura (layer 1) -->
+                        <img src="assets/auras/demon.png" class="character-aura-img" id="villainAuraImg" alt="">
+                        
+                        <!-- Avatar DiceBear (layer 2) -->
+                        <img src="" class="character-avatar" id="villainAvatar" alt="Demon">
+                        
+                        <!-- Muscle overlay (layer 3 - CSS effect) -->
+                        <div class="character-muscle-overlay"></div>
+                        
+                        <!-- Weapon (layer 4) -->
+                        <img src="" class="character-weapon-img" id="villainWeaponImg" alt="" style="display: none;">
+                        
+                        <!-- Power (layer 5) -->
+                        <img src="" class="character-power-img" id="villainPowerImg" alt="" style="display: none;">
+                    </div>
+                    <div class="character-stats">
+                        <div class="stat-bar">
+                            <span data-fr="Force:" data-en="Power:">Force:</span>
+                            <div class="stat-fill villain-stat-fill" id="villainStatBar"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="habits-container" id="villainHabits">
+                    <!-- Habits will be added dynamically -->
+                </div>
+                
+                <button class="add-habit-btn villain-add-btn" id="addVillainHabit">
+                    <span>+</span>
+                    <span data-fr="Ajouter habitude" data-en="Add habit">Ajouter habitude</span>
+                </button>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="arena">
+                <span class="nav-icon">⚔️</span>
+                <span class="nav-label" data-fr="Arène" data-en="Arena">Arène</span>
+            </button>
+            <button class="nav-btn" data-page="army">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-label" data-fr="Armée" data-en="Army">Armée</span>
+            </button>
+            <button class="nav-btn" data-page="stats">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label" data-fr="Stats" data-en="Stats">Stats</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Army Page -->
+    <div id="armyPage" class="page hidden">
+        <header class="page-header">
+            <button class="back-btn" onclick="showPage('arena')">←</button>
+            <h1 data-fr="MON ARMÉE" data-en="MY ARMY">MON ARMÉE</h1>
+        </header>
+        <div class="army-grid" id="armyGrid">
+            <div class="army-empty" data-fr="Gagne ton premier combat pour commencer ton armée !" 
+                 data-en="Win your first battle to start your army!">
+                Gagne ton premier combat pour commencer ton armée !
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Page -->
+    <div id="statsPage" class="page hidden">
+        <header class="page-header">
+            <button class="back-btn" onclick="showPage('arena')">←</button>
+            <h1 data-fr="STATISTIQUES" data-en="STATISTICS">STATISTIQUES</h1>
+        </header>
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-value" id="totalBattles">0</div>
+                <div class="stat-label" data-fr="Combats totaux" data-en="Total battles">Combats totaux</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalWins">0</div>
+                <div class="stat-label" data-fr="Victoires" data-en="Victories">Victoires</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="winRate">0%</div>
+                <div class="stat-label" data-fr="Taux de victoire" data-en="Win rate">Taux de victoire</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="currentStreak">0</div>
+                <div class="stat-label" data-fr="Série actuelle" data-en="Current streak">Série actuelle</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Combat Screen -->
+    <div id="combatScreen" class="combat-screen hidden">
+        <div class="combat-arena">
+            <div class="combat-character combat-hero" id="combatHero">
+                <div class="character-body"></div>
+                <div class="character-head"></div>
+                <div class="character-aura hero-aura"></div>
+            </div>
+            <div class="combat-character combat-villain" id="combatVillain">
+                <div class="character-body"></div>
+                <div class="character-head"></div>
+                <div class="character-aura villain-aura"></div>
+            </div>
+            <div class="combat-effects" id="combatEffects"></div>
+        </div>
+        <div class="combat-result hidden" id="combatResult">
+            <h2 class="result-title" id="resultTitle"></h2>
+            <p class="result-message" id="resultMessage"></p>
+            <button class="result-btn" id="resultBtn">Continuer</button>
+        </div>
+    </div>
+
+    <!-- Habit Modal -->
+    <div id="habitModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">×</button>
+            <h3 class="modal-title" id="modalTitle">Ajouter une habitude</h3>
+            <form id="habitForm">
+                <div class="form-group">
+                    <label data-fr="Nom de l'habitude:" data-en="Habit name:">Nom de l'habitude:</label>
+                    <input type="text" id="habitName" required maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label data-fr="Points (1-5):" data-en="Points (1-5):">Points (1-5):</label>
+                    <div class="points-selector">
+                        <input type="range" id="habitPoints" min="1" max="5" value="3">
+                        <span class="points-value" id="pointsValue">3</span>
+                    </div>
+                </div>
+                <button type="submit" class="modal-submit" data-fr="Ajouter" data-en="Add">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeSettings()">×</button>
+            <h3 class="modal-title" data-fr="PARAMÈTRES" data-en="SETTINGS">PARAMÈTRES</h3>
+            <div class="settings-content">
+                <div class="settings-section">
+                    <h4 data-fr="Langue" data-en="Language">Langue</h4>
+                    <select id="languageSelect" class="settings-select">
+                        <option value="fr">Français</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                <div class="settings-section">
+                    <h4 data-fr="À propos" data-en="About">À propos</h4>
+                    <p class="settings-info" data-fr="Habit Battle Arena v1.0" data-en="Habit Battle Arena v1.0">
+                        Habit Battle Arena v1.0
+                    </p>
+                </div>
+                <div class="settings-section">
+                    <h4 data-fr="Prochainement" data-en="Coming Soon">Prochainement</h4>
+                    <p class="settings-coming" data-fr="• Combats entre amis<br>• Ligues mondiales<br>• Guerres d'armées mensuelles" 
+                       data-en="• Friend battles<br>• World leagues<br>• Monthly army wars">
+                        • Combats entre amis<br>• Ligues mondiales<br>• Guerres d'armées mensuelles
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Footer -->
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; text-align: center; padding: 0.5rem; font-size: 0.7rem; color: rgba(255,255,255,0.3); background: rgba(0,0,0,0.5); pointer-events: none; z-index: 1;">
+        © 2024 Habit Battle Arena - Tous droits réservés
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
